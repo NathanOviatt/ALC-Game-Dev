@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class move.cs : MonoBehaviour {
+public class PlayerMove : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
