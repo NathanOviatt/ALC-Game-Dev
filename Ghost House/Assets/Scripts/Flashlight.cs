@@ -17,6 +17,10 @@ public class Flashlight : MonoBehaviour {
 
 	Light light;
 
+	bool draining = false;
+
+	long count = 0;
+
 	public Text batteryText;
 
 	void Start () {
@@ -47,8 +51,14 @@ public class Flashlight : MonoBehaviour {
 		batteryText.text = currentPower.ToString();
 
 		//Drain battery life
-		if(currentPower > 0){
-			StartCoroutine(BatteryDrain(batDrainDelay,batDrainAmt));
+		if(currentPower > 0 && lightOn){
+				if(!draining){
+					StartCoroutine(BatteryDrain(batDrainDelay,batDrainAmt));
+				}
+				else if(currentPower <= 0){
+					lightOn = false;
+					light.enabled = false;
+				}
 		}
 
 	}
@@ -60,12 +70,19 @@ public class Flashlight : MonoBehaviour {
 	}
 
 	IEnumerator BatteryDrain(float delay, int amount){
-		yield return new WaitForSeconds(delay);
-		currentPower -= amount;
+		if(lightOn){
+			draining = true;
+			yield return new WaitForSeconds(delay);
+			print(currentPower);
+			currentPower -= amount;
+		}
 		if(currentPower <= 0){
 			currentPower = 0;
 			print("Battery is dead!");
 			light.enabled = false;
 		}
+
+		draining = false;
+
 	}
 }
