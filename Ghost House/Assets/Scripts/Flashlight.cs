@@ -38,11 +38,13 @@ public class Flashlight : MonoBehaviour {
 	void Update () {
 		//Toggle light on/off when E key is pressed
 		if (Input.GetKeyUp (KeyCode.E) && lightOn) {
+			print("Light Off");
 			lightOn = false;
 			light.enabled = false;
 		}
 
 		else if (Input.GetKeyUp (KeyCode.E) && !lightOn && currentPower > 0){
+			print("Light On");
 			lightOn = true;
 			light.enabled = true;
 		}
