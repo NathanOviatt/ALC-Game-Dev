@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class Flashlight : MonoBehaviour {
 
@@ -25,7 +25,6 @@ public class Flashlight : MonoBehaviour {
 
 	void Start () {
 		currentPower = maxPower;
-		//Add power to flashlight
 		print("Power = " + currentPower);
 
 		light = GetComponent<Light> ();
@@ -78,6 +77,7 @@ public class Flashlight : MonoBehaviour {
 			print(currentPower);
 			currentPower -= amount;
 		}
+
 		if(currentPower <= 0){
 			currentPower = 0;
 			print("Battery is dead!");

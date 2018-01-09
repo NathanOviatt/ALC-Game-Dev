@@ -19,9 +19,9 @@ public class BatterySpawn : MonoBehaviour {
 	
 	void Update () {
 		if(batSpawned == false){
-			if(batSpawned == false){
+			if(!spawning){
 				spawning = !spawning;
-				StartCoroutine(SpawnBat(SpawnTime, battery));
+				StartCoroutine(SpawnBat(spawnTime, battery));
 				print("Spawn Box is Empty");
 			}
 		}
@@ -37,15 +37,14 @@ public class BatterySpawn : MonoBehaviour {
 			print("Battery is in the trigger");
 			batSpawned = true;
 			}
-
-		}
-	}
+	 	}
 		void OntriggerExit(Collider other){
 			if(other.gameObject.tag == "Battery"){
 				print("Spawner is Empty");
 				batSpawned = false;
 			}
 		}
+
 		IEnumerator SpawnBat(float time, Rigidbody bat){
 			yield return new WaitForSeconds(time);
 				Instantiate(bat, spawnPoint.position, spawnPoint.rotation);

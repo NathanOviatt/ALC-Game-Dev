@@ -6,6 +6,7 @@ public class GhostStun : MonoBehaviour {
 	bool lightCheck;
 	Flashlight flash;
 	public GameObject ghost;
+	public float stunDelay;
 
 	void Start () {
 		flash = gameObject.GetComponentInChildren<Light>().GetComponentInChildren<Flashlight>();
@@ -25,7 +26,7 @@ public class GhostStun : MonoBehaviour {
 			print("Ghost is stunned!");
 
 			other.GetComponent<GhostAI>().moveSpeed = 0f;
-			StartCoroutine(Wait(5, other));
+			StartCoroutine(Wait(stunDelay, other));
 		}
 	}
 
