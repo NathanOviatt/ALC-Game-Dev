@@ -28,8 +28,8 @@ public class BatterySpawn : MonoBehaviour {
 		else if(batSpawned == true){
 
 			print("Battery has spawned!");
-			}
 		}
+	}
 
 	 void OnTriggerEnter(Collider other){
 
